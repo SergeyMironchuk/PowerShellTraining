@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerShellFacades", "PowerS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingProgram", "TrainingProgram\TrainingProgram.csproj", "{F6AE04A4-F538-4415-9FA7-AF61CE996ED3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerShell.WebUI", "PowerShell.WebUI\PowerShell.WebUI.csproj", "{6B0526DE-A7C0-497E-949B-7ED0F3EC6756}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{F6AE04A4-F538-4415-9FA7-AF61CE996ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6AE04A4-F538-4415-9FA7-AF61CE996ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6AE04A4-F538-4415-9FA7-AF61CE996ED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B0526DE-A7C0-497E-949B-7ED0F3EC6756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0526DE-A7C0-497E-949B-7ED0F3EC6756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B0526DE-A7C0-497E-949B-7ED0F3EC6756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0526DE-A7C0-497E-949B-7ED0F3EC6756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

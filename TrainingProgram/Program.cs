@@ -9,7 +9,8 @@ namespace TrainingProgram
         static void Main(string[] args)
         {
             var powerShell = new PowerShellFacade();
-            powerShell.RunCommand("dir", new KeyValuePair<string, object>[0], objects =>
+            var parameters = new[]{"c:\\_Projects"};
+            powerShell.RunCommandWithArguments("dir", parameters, objects =>
             {
                 foreach (var psObject in objects)
                 {
