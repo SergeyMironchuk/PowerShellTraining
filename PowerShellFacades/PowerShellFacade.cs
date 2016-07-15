@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Management.Automation;
 using System.Collections.ObjectModel;
+using System.Management.Automation.Runspaces;
 
 namespace PowerShellFacades
 {
@@ -11,14 +12,15 @@ namespace PowerShellFacades
         {
             using (PowerShell powershell = PowerShell.Create())
             {
-                powershell.AddCommand(commandName);
+                Command command = new Command(commandName);
                 foreach (var parameter in parameters)
                 {
-                    powershell.AddParameter(parameter.Key, parameter.Value);
+                    command.Parameters.Add(parameter.Key, parameter.Value);
                 }
+                powershell.Commands.AddCommand(command);
                 Collection<PSObject> results = powershell.Invoke();
 
-                if (processComandResult != null) processComandResult(results);
+                processComandResult?.Invoke(results);
             }
         }
 
@@ -33,7 +35,7 @@ namespace PowerShellFacades
                 }
                 Collection<PSObject> results = powershell.Invoke();
 
-                if (processComandResult != null) processComandResult(results);
+                processComandResult?.Invoke(results);
             }
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Management.Automation;
 using System.Web.Mvc;
 using PowerShellFacades;
 
@@ -12,14 +14,25 @@ namespace PowerShell.WebUI.Controllers
         {
             var resultList = new List<string>();
             var powerShell = new PowerShellFacade();
-            var commandData = command.Split(' ');
-            List<string> argumets = new List<string>();
-            if (commandData.Length > 1) argumets.Add(commandData[1]);
-            powerShell.RunCommandWithArguments(commandData[0], argumets, objects =>
+            var commandArray = command.Split(' ');
+            var argumets = new List<KeyValuePair<string, object>>();
+            for (int i = 1; i < commandArray.Length; i = i+2)
             {
-                foreach (var psObject in objects)
+                argumets.Add(i < commandArray.Length - 1
+                    ? new KeyValuePair<string, object>(commandArray[i], commandArray[i + 1])
+                    : new KeyValuePair<string, object>(commandArray[i], null));
+            }
+            powerShell.RunCommandWithParameters(commandArray[0], argumets, objects =>
+            {
+                int i = 0;
+                foreach (PSObject psObject in objects)
                 {
-                    resultList.Add(psObject.ToString());
+                    foreach (var member in psObject.Properties)
+                    {
+                        if (member.IsInstance)
+                        resultList.Add($"{++i}. {member.Name}={member.Value}");
+                    }
+                    resultList.Add($"{++i}. -------");
                 }
             });
             return Json(resultList);
